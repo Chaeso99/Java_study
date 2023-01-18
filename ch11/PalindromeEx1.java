@@ -34,7 +34,7 @@ class GetPalindrome {
 //			rstrnum = Integer.valueOf(rstr);
 //			if (strnum == rstrnum) // 뒤집은 문자열이 같으면 대칭수이므로 정답에 더하기
 //			{
-//				pd1 = pd1 + i;
+//				pd2 = pd2 + i;
 //			}
 //		System.out.println("2진법의 대칭수의 합:" + pd2);
 //	}
@@ -58,5 +58,4 @@ public class PalindromeEx1 {
 		//GPd.getPD2(MAX);
 		//문제3.10진법과 2진법으로 모두 대칭수인 100,000 이하 숫자의 합은 얼마입니까?
 	}
-
 }
