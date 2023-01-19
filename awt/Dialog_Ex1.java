@@ -35,10 +35,12 @@ implements ActionListener{
 		//Dialog의 창크기
 		int width = 100;
 		int height = 150;
-		int x = fx+getWidth()/2-width/2;
-		int y = fy+getHeight()/2-height/2;
+		md.setSize(width, height);
+		md.setLocationRelativeTo(this);
+//		int x = fx+getWidth()/2-width/2;
+//		int y = fy+getHeight()/2-height/2;
 		
-		md.setBounds(x, y, width, height);
+		//md.setBounds(x, y, width, height);
 		md.setVisible(true);
 	}
 	
