@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.util.Vector;
 
 public class MemberBean {
-	//í…Œì´ë¸”ì˜ ì»¬ëŸ¼
+	//Å×ÀÌºíÀÇ ÄÃ·³
 	private int id;
 	private String name;
 	private String	phone;

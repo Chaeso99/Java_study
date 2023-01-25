@@ -20,14 +20,14 @@ class DialogBox extends JDialog implements ActionListener {
         super(cp, true);
         this.cp = cp;
         setTitle(title);
-        // ë©”ì‹œì§€ ì¶œë ¥
+        // ¸Ş½ÃÁö Ãâ·Â
         add(new JLabel(name, JLabel.CENTER));
         
         JPanel pan = new JPanel();
         pan.setLayout(new FlowLayout());
         add(pan, BorderLayout.SOUTH);
 
-        b1 = new JButton("í™•ì¸");
+        b1 = new JButton("È®ÀÎ");
         pan.add(b1);
         b1.addActionListener(this);
         	
@@ -36,7 +36,7 @@ class DialogBox extends JDialog implements ActionListener {
         setVisible(true);
     }
 
-    // ë‹¤ì´ì–¼ë¡œê·¸ ìœ„ì˜ ë²„íŠ¼ì„ í´ë¦­í–ˆì„ ë•Œ
+    // ´ÙÀÌ¾ó·Î±× À§ÀÇ ¹öÆ°À» Å¬¸¯ÇßÀ» ¶§
     public void actionPerformed(ActionEvent evt) {
         dispose();
     }
