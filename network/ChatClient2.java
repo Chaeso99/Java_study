@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
+import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -129,9 +130,17 @@ implements ActionListener, Runnable {
 				list.add(st.nextToken());	
 			}
 		}
-		else if(cmd.equals(ChatProtocol2.CHATALL))
+		else if(cmd.equals(ChatProtocol2.CHATALL)||cmd.equals(ChatProtocol2.CHAT))
 		{
 			area.append(data+"\n");
+		}
+		else if(cmd.equals(ChatProtocol2.MESSAGE))
+		{
+			//data => ccc;오늘 머해?
+			idx = data.indexOf(';');
+			cmd = data.substring(0, idx); //ccc
+			data= data.substring(idx+1); //오늘 머해?
+			new Message("FROM:", cmd, data);
 		}
 	}//--routine
 	
@@ -148,11 +157,32 @@ implements ActionListener, Runnable {
 		}
 		else if(obj==bt2) 
 		{//save
-			
+			long fileName = System.currentTimeMillis();
+			try 
+			{
+				FileWriter fw= new FileWriter("network/"+fileName+".txt");
+				fw.write(area.getText());
+				fw.close();
+				area.setText("");
+				new MDialog(this, "Save", "대화내용을 저장하였습니다.");
+				} 
+			catch (Exception e2) 
+			{
+				e2.printStackTrace();
+			}
 		}
 		else if(obj==bt3) 
 		{//message
-			
+			//리스트에 현재 커서가 있는 위치값
+			int idx = list.getSelectedIndex();
+			if(idx==0||idx==-1)
+			{
+				new MDialog(this, "알림", "아이디를 선택하세요");
+			}
+			else
+			{
+				new Message("TO:");
+			}
 		}
 		else if(obj==bt4||obj==tf3) 
 		{//send
@@ -173,7 +203,16 @@ implements ActionListener, Runnable {
 			}
 			else//일반 채팅
 			{
-				sendMessage(ChatProtocol2.CHATALL+ChatProtocol2.MODE+str);
+				int idx = list.getSelectedIndex();
+				if(idx==0||idx==-1) //일반채팅
+				{
+					sendMessage(ChatProtocol2.CHATALL+ChatProtocol2.MODE+str);
+				}
+				else //귓속말
+				{
+					String id = list.getSelectedItem();
+					sendMessage(ChatProtocol2.CHAT+ChatProtocol2.MODE+id+";"+str);
+				}
 				tf3.setText("");
 				tf3.requestFocus();
 			}
